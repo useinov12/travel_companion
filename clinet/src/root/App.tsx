@@ -78,7 +78,7 @@ function App() {
     /* global google */
     // @ts-ignore
     google.accounts.id.initialize( {
-      client_id:"443850941060-1d7hkpifqhn2sqf54ekkhv0t8kembqh4.apps.googleusercontent.com", 
+      client_id: process.env.GOOGLE_SIGN_IN_KEY, 
       callback: handleSignInCB
     })
   }, [])
