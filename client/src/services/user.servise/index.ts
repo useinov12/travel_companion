@@ -1,17 +1,10 @@
 import http from '../http-common';
-import Place from '../rapid-api/Place'
 
-interface User{
-    _id:string,
-    name:string,
-    email:string,
-    places:Place[]
-}
 
 class AccessUserService{
     async getByEmail(email:string){
         try {
-            const { data, status } = await http.get<any>(`/users/find`, { params: { email: email } });
+            const { data, status } = await http.get<any>(`/users`, { params: { email: email } });
             const { User } = data;
             console.log({ User, status });
             if(User) return { User, status };
@@ -24,7 +17,7 @@ class AccessUserService{
     async createUser(email:string, name:string){
         console.log({ServiceFRONT:{email, name}})
         try{
-            const resp = await http.post<any>(`users/create`, { username:name, email:email });
+            const resp = await http.post<any>(`/users`, { username:name, email:email });
             console.log(resp)
             return resp
         } catch( error ){
