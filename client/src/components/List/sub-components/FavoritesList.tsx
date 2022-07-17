@@ -5,7 +5,7 @@ import {List as ListMUI} from '@material-ui/core'
 import ListItem from '@material-ui/core/ListItem';
 import Collapse from '@material-ui/core/Collapse';
 
-import Place from 'api/Place';
+import Place from 'services/rapid-api/Place';
 
 
 interface FavoritesList{ 

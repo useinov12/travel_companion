@@ -1,15 +1,15 @@
 import React, { useState, createRef, useEffect, Dispatch } from 'react'
 
 import {Bounds, PlaceType, Rating } from 'sharedTypes/types'
-import Place from 'api/Place'
-import User from 'api/User'
+import Place from 'services/rapid-api/Place'
+import User from 'services/rapid-api/User'
 import useStyles from './styles';
 
 
-import FavoritesList from './subComponents/FavoritesList'
-import PlaceList from './subComponents/PlaceList'
-import SkeletonList from './subComponents/SkeletonList'
-import FormsMenu from './subComponents/FormsMenu'
+import FavoritesList from './sub-components/FavoritesList'
+import PlaceList from './sub-components/PlaceList'
+import SkeletonList from './sub-components/SkeletonList'
+import FormsMenu from './sub-components/FormsMenu'
 
 
 
@@ -42,7 +42,7 @@ const List :React.FC<ListProps> = ( { User, setMapMarkerFocus, childClicked, pla
 
     useEffect(()=>{
         if(places){
-            console.log(places)
+            // console.log(places)
             const refs = Array(places.length).fill(0).map((_, idx)=>listItemRef[idx] || createRef() )
             setListItemRef(refs);
         }

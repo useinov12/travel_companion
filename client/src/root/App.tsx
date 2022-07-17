@@ -1,8 +1,11 @@
 import React, {useState, useEffect} from 'react';
-import jwt_decode from 'jwt-decode';
-import { getPlacesData } from 'api';
-import Place from 'api/Place';
-import UserClass from 'api/User'
+import axios from 'axios'
+// import jwt_decode from 'jwt-decode';
+import { getPlacesData, getFavPlaceByCoords } from 'services/rapid-api';
+import Place from 'services/rapid-api/Place';
+import UserClass from 'services/rapid-api/User'
+
+import {handleSignIn, renderGoogleSignInBtn } from 'services/googleAuth'
 
 import { CssBaseline, Grid, useMediaQuery } from '@material-ui/core';
 
@@ -29,7 +32,7 @@ function App() {
 
   const noUser :UserClass = new UserClass('No User')
   const [User, setUser ] = useState<UserClass>(noUser);
-
+ 
 
   const [ places, setPlaces ] = useState<Place[]>();
   const [ filteredPlaces, setFilteredPlaces ] = useState<Place[]>([]);
@@ -51,13 +54,9 @@ function App() {
   }, [currentWidth])
 
 
-  const handleSignInCB = (response:any) =>{
-    console.log({'Encoded JWT ID Token':response.credential})
-    const userObject = jwt_decode(response.credential) 
-    console.log( {googleRespCred:userObject} )
-    setUser( new UserClass( userObject ))
-    const btn = document.getElementById("googleSignInBtn")!
-    btn.hidden= true
+  const handleSetUser = (user:any) =>{
+    console.log('SETTIN USER USING HANDLER')
+    setUser(new UserClass(user))
   }
 
   const handleSignOut = () =>{
@@ -74,22 +73,13 @@ function App() {
     })
   }, [])
 
+
   useEffect(()=>{
-    /* global google */
-    // @ts-ignore
-    google.accounts.id.initialize( {
-      client_id: process.env.REACT_APP_GOOGLE_SIGN_IN_KEY, 
-      callback: handleSignInCB
-    })
+    handleSignIn(handleSetUser);
   }, [])
 
   useEffect(()=>{
-    /* global google */
-    // @ts-ignore
-    google.accounts.id.renderButton(
-      document.getElementById("googleSignInBtn"),
-      {theme:"filled_black", size:"large", type: isMobile ? 'icon':'standart', text:"signin"}
-    )
+    renderGoogleSignInBtn(isMobile)
   },[isMobile])
 
   useEffect(()=>{
@@ -102,11 +92,11 @@ function App() {
       setIsLoading(true)
 
       getPlacesData(type, bounds.sw, bounds.ne)
-        .then( (data) => {
-          setPlaces(data && data.filter((place:any)=> place.name && place.num_reviews > 0))
-          console.log(data)
-          setIsLoading(false)
-        })
+      .then( data => {
+        setPlaces(data && data.filter((place:any)=> place.name && place.num_reviews > 0))
+        // console.log(data)
+        setIsLoading(false)
+      })
     }
   }, [bounds, type])
 

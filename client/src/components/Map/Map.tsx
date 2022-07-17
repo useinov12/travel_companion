@@ -13,7 +13,7 @@ import useStyles from './styles'
 import LocationOutlineIcon from '@material-ui/icons/LocalActivityOutlined'
 import RoomIcon from '@material-ui/icons/Room';
 import {Coordinates, Bounds} from 'sharedTypes/types'
-import Place from 'api/Place';
+import Place from 'services/rapid-api/Place';
 
 interface MapProps{
     setMapMarkerFocus:Dispatch<number>
@@ -56,7 +56,7 @@ const Map :React.FC<MapProps> = ( {setMapMarkerFocus, mapMarkerFocus, setChildCl
                 margin={[50,50,50,50]}
                 // options={''}
                 onChange={ (e)=> {
-                    console.log(e.marginBounds.sw)
+                    // console.log(e.marginBounds.sw)
                     setCoordinates( { lat:e.center.lat, lng:e.center.lng } )
                     setBounds({ sw:e.marginBounds.sw, ne:e.marginBounds.ne })
                 }}

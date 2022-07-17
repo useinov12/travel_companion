@@ -11,8 +11,8 @@ import {Coordinates} from 'sharedTypes/types'
 
 import useStyles from './styles';
 
-import SearchInput from './subComponents/SearchInput'
-import UserIcon from './subComponents/UserIcon'
+import SearchInput from './sub-components/SearchInput'
+import UserIcon from './sub-components/UserIcon'
 
 
 
@@ -50,7 +50,7 @@ const Header:React.FC<HeaderProps> = ( {isMobile,  User, setCoordinates, handleS
     }
 
     
-    const userIconProps = {
+    const userIconProps = { 
         User, 
         handleSignOut
     }
@@ -64,9 +64,8 @@ const Header:React.FC<HeaderProps> = ( {isMobile,  User, setCoordinates, handleS
 
                         <SearchInput onLoad={onLoad} onPlaceChanged={onPlaceChanged}/>
 
-                        {/* LOGIN FUNC */}
-                        {/* <div id="googleSignInBtn" ></div>  */}
-                        {/* { User.name && <UserIcon {...userIconProps}/> } */}
+                        <div id="googleSignInBtn" ></div> 
+                        { User.name && <UserIcon {...userIconProps}/> }
                     </Box>
                 </Toolbar>
             </AppBar>

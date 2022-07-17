@@ -1,15 +1,11 @@
 import express from 'express';
-import { createUser } from '../controller/user'
-import users from '../db'
+import { createUser, getUserByEmail, addFavPlace, removeFavPlace } from '../controller/user';
 const router = express.Router();
 
-//DB simulation
-const data  = {}
-data.users = users;
+router.get('/users/find', getUserByEmail)
+router.post('/users/create', createUser)
 
-router.post('/users', createUser)
-// router.get('/users', (req, res)=>{
-//     res.send('Users')
-// })
+router.put('/users/add_favorite', addFavPlace)
+router.put('/users/remove_favorite', removeFavPlace)
 
 export default router;

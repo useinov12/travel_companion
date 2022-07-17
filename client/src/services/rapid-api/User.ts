@@ -3,13 +3,13 @@ import Place from './Place'
 
 export default class User {
     name:string;
-    user_id:string;
+    // user_id:string;
     picture:string;
     favorites:Place[]
 
     constructor(user:any){
         this.name = user.name;
-        this.user_id = '';
+        // this.user_id = '';
         this.picture = user.picture;
         this.favorites = [];
     }

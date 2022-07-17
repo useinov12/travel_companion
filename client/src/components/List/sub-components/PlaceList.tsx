@@ -4,8 +4,8 @@ import Stack from '@mui/material/Stack'
 
 import { PlaceDetails } from 'components/PlaceDetails'
 
-import Place from 'api/Place'
-import User from 'api/User'
+import Place from 'services/rapid-api/Place'
+import User from 'services/rapid-api/User'
 import useStyles from '../styles';
 
 

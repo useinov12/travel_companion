@@ -1,8 +1,8 @@
 import React, {Dispatch} from 'react';
 import {Box, Typography, Button, Card, CardMedia, CardContent, CardActions, Chip, useMediaQuery} from '@material-ui/core';
 import Rating from '@mui/material/Rating';
-import User from 'api/User'
-import Place from 'api/Place'
+import User from 'services/rapid-api/User'
+import Place from 'services/rapid-api/Place'
 
 import LocationOnIcon from '@material-ui/icons/LocationOn'
 import PhoneIcon from '@material-ui/icons/Phone'

@@ -1,9 +1,9 @@
 import React, {useEffect, useState} from 'react';
-import User from 'api/User'
-import Place from 'api/Place'
+import User from 'services/rapid-api/User'
+import Place from 'services/rapid-api/Place'
 
-import CardDesktop from './subComponents/CardDesktop'
-import CardMobile from './subComponents/CardMobile'
+import CardDesktop from './sub-components/CardDesktop'
+import CardMobile from './sub-components/CardMobile'
 
 type PlaceDetailsProps={
     place:Place,
