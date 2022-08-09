@@ -6,13 +6,12 @@
   "type": "module",
   "heroku-postbuild": "cd client && npm install && npm run build",
   "scripts": {
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server.js",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "server": "nodemon server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "dev": "react-scripts start", 
+    "start": "serve -s build", 
+    "build": "react-scripts build",
+     "test": "react-scripts test --env=jsdom", 
+     "eject": "react-scripts eject", 
+     "heroku-postbuild": "npm run build"
   },
   "author": "",
   "license": "ISC",
@@ -21,7 +20,8 @@
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "google-auth-library": "^8.1.1",
-    "mongoose": "^6.4.4"
+    "mongoose": "^6.4.4",
+    "serve": "^14.0.1"
   },
   "devDependencies": {
     "@types/google-map-react": "^2.1.7",
