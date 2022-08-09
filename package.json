@@ -4,7 +4,7 @@
   "description": "",
   "main": "server.js",
   "type": "module",
-  "heroku": "postbuild",
+  "heroku-postbuild": "cd client && npm install && npm run build",
   "scripts": {
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server.js",
     "build": "cd client && npm run build",

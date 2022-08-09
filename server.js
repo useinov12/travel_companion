@@ -45,9 +45,9 @@ connectDB();
 
 
 //routes
-app.get('/', (req, res)=>{
-    res.send('Hello server')
-})
+// app.get('/', (req, res)=>{
+//     res.send('Hello server')
+// })
 
 app.use('/api', mainRouter);
 
