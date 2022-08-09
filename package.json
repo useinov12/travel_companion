@@ -4,10 +4,9 @@
   "description": "",
   "main": "server.js",
   "type": "module",
-  "heroku":"postbuild",
+  "heroku": "postbuild",
   "scripts": {
     "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server.js",
-
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "npm run install-client && npm run build",
@@ -25,6 +24,7 @@
     "mongoose": "^6.4.4"
   },
   "devDependencies": {
+    "@types/google-map-react": "^2.1.7",
     "nodemon": "^2.0.19"
   }
 }
