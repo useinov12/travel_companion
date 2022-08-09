@@ -1,4 +1,0 @@
-to push any new commits on heroku:
-$ git add ...
-$ git commit -am "commit message"
-$ git push heroku main
