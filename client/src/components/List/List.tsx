@@ -6,7 +6,7 @@ import User from 'services/rapid-api/User'
 import useStyles from './styles';
 
 
-import FavoritesList from './sub-components/FavoritesList'
+// import FavoritesList from './sub-components/FavoritesList'
 import PlaceList from './sub-components/PlaceList'
 import SkeletonList from './sub-components/SkeletonList'
 import FormsMenu from './sub-components/FormsMenu'
@@ -84,7 +84,7 @@ const List :React.FC<ListProps> = ( { User, setMapMarkerFocus, childClicked, pla
             {/* LOGIN FUNC */}
             {/* <FavoritesList {...favoritesListProps} /> */}
 
-            { places ? <PlaceList {...placesProps} /> : <SkeletonList isMobile={isMobile}/> }
+            { isLoading ? <SkeletonList isMobile={isMobile}/> : <PlaceList {...placesProps} />  }
             
         </div>
     )

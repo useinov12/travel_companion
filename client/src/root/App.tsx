@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
-// import jwt_decode from 'jwt-decode';
 import { getPlacesData, getFavPlaceByCoords } from 'services/rapid-api';
 import Place from 'services/rapid-api/Place';
 import UserClass from 'services/rapid-api/User'
@@ -88,12 +87,12 @@ function App() {
   }, [rating])
 
   useEffect(()=>{
-    if(bounds !== initBounds){
+    if(bounds){
       setIsLoading(true)
 
       getPlacesData(type, bounds.sw, bounds.ne)
       .then( data => {
-        setPlaces(data && data.filter((place:any)=> place.name && place.num_reviews > 0))
+        setPlaces(data && data.filter( (place:any) => place.name && place.num_reviews > 0))
         // console.log(data)
         setIsLoading(false)
       })
