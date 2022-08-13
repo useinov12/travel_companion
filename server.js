@@ -51,12 +51,22 @@ connectDB();
 
 app.use('/api', mainRouter);
 
-// Step 1:
-app.use(express.static(path.resolve(__dirname, "./client/build")));
-// Step 2:
-app.get("*", function (request, response) {
-  response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
-});
+// // Step 1:
+// app.use(express.static(path.resolve(__dirname, "./client/build")));
+// // Step 2:
+// app.get("*", function (request, response) {
+//   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
+// });
+
+if (process.env.NODE_ENV === "production") {
+    console.log(true)
+    app.use(express.static("client/build"));
+    app.get("*", (req, res) => {
+      res.sendFile(path.join(__dirname, "./client/build/index.html"));
+    });
+}
+
+
 mongoose.connection.once('open', ()=>{
     console.log('Connected to MongoDB')
     app.listen( PORT, ()=> console.log(`Server on port ${PORT}`));
