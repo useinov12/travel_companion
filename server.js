@@ -18,7 +18,7 @@ import mainRouter from './routes/main.js'
 dotenv.config();
 const app = express();
 
-const PORT = process.env.PORT 
+const PORT = process.env.PORT || 5001
 
 // Cross Origin Resource Sharing
 const whitelist = ['http://127.0.0.1:5500', 'https://travel-comp-app.herokuapp.com'];
