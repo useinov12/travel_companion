@@ -54,10 +54,10 @@ app.use('/api', mainRouter);
 
 
 // Step 1:
-app.use(express.static(path.resolve('./client/build')));
+app.use(express.static('./client/build'));
 // Step 2:
 app.get("*", function (request, response) {
-  response.sendFile(path.resolve('./client/build/index.html'));
+  response.sendFile('./client/build/index.html');
 });
 
 
