@@ -49,7 +49,7 @@ connectDB();
 //     res.send('Hello server')
 // })
 
-app.use('/api', mainRouter);
+
 
 // Step 1:
 app.use(express.static(path.resolve(__dirname, "./client/build")));
@@ -57,6 +57,8 @@ app.use(express.static(path.resolve(__dirname, "./client/build")));
 app.get("*", function (request, response) {
   response.sendFile(path.resolve(__dirname, "./client/build", "index.html"));
 });
+
+app.use('/api', mainRouter);
 
 mongoose.connection.once('open', ()=>{
     console.log('Connected to MongoDB')
