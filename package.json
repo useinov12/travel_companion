@@ -6,13 +6,12 @@
   "type": "module",
   "heroku-postbuild": "cd client && npm install && npm run build",
   "scripts": {
-    "dev": "nodemon --experimental-modules --es-module-specifier-resolution=node server.js",
     "build": "cd client && npm run build",
     "install-client": "cd client && npm install",
     "heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client",
     "server": "nodemon server.js",
-    "develop": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
-    "start": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\""
+    "dev": "concurrently --kill-others-on-fail \"npm run server\" \"npm run start --prefix client\"",
+    "start": "node server.js"
   },
   "engines": {
     "npm": "8.1.0",
