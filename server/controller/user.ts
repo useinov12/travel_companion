@@ -1,10 +1,11 @@
+import { Request, Response } from 'express'
 import mongoose from 'mongoose';
 import User from '../models/user'
 
 
-export async function createUser(req, res){
+export async function createUser(req:Request, res:Response){
     const usr = new User({
-        _id: mongoose.Types.ObjectId(),
+        _id: new mongoose.Types.ObjectId(),
         username:req.body.username, 
         email:req.body.email,
         places:[]
@@ -24,10 +25,9 @@ export async function createUser(req, res){
         error: error.message,
       });
     });
-
 }
 
-export async function getUserByEmail(req, res){
+export async function getUserByEmail(req:Request, res:Response){
 
     const gmail = req.query.email;
 
@@ -49,7 +49,7 @@ export async function getUserByEmail(req, res){
 
 }
 
-export async function addFavPlace(req, res){
+export async function addFavPlace(req:Request, res:Response){
     try{
         const updatedUser = await User.updateOne( {email:req.query.email},{ $addToSet:{places:req.query.place} })
         return res.status(200).json({
@@ -58,27 +58,27 @@ export async function addFavPlace(req, res){
             User: updatedUser,
         });
     } catch(error){
-        res.status(500).hson({
+        res.status(500).json({
             success: false,
             message: 'Could not add place',
-            error: err.message,
+            error: error.message,
         });
     }
 }
 
-export async function removeFavPlace(req, res){
+export async function removeFavPlace(req:Request, res:Response){
     try{
-        const updatedUser = await User.updateOne( {email:req.query.email}, { $pull: { places:req.query.place } });
+        const updatedUser = await User.updateOne( {email:req.query.email}, { $pull: { places:req.query.place as any} });
         return  res.status(200).json({
             success: true,
             message: `Place deleted!`,
             User: updatedUser,
         });
     } catch(error){
-        res.status(500).hson({
+        res.status(500).json({
             success: false,
             message: 'Could not add place',
-            error: err.message,
+            error: error.message,
         });
     }
 }

@@ -1,8 +1,8 @@
-import express from 'express'
+import express, {Request, Response} from 'express'
 import dotenv from 'dotenv'
-import cors from 'cors'
+import cors, {CorsOptions} from 'cors'
 import mongoose from 'mongoose'
-import connectDB from '../server/config/connectDB'
+import connectDB from './config/connectDB'
 import mainRouter from './routes/main'
 
 
@@ -14,9 +14,9 @@ const PORT  = process.env.PORT;
 // Cross Origin Resource Sharing
 const whitelist = ['http://127.0.0.1:5500', 'http://localhost:3000'];
 
-const corsOptions = {
+const corsOptions:CorsOptions = {
     origin: (origin, callback) => {
-        if (whitelist.indexOf(origin) !== -1 || !origin) {
+        if (whitelist.indexOf(origin!) !== -1 || !origin) {
             callback(null, true)
         } else {
             callback(new Error('Not allowed by CORS'));

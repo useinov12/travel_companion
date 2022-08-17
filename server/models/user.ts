@@ -1,5 +1,7 @@
 import mongoose from 'mongoose'
 
+import { Document } from 'mongoose'
+
 mongoose.Promise = global.Promise;
 
 const  Schema = mongoose.Schema;
@@ -20,4 +22,12 @@ const UserSchema = new Schema({
     }
 })
 
-export default mongoose.model('User', UserSchema) ;
+
+interface User extends Document {
+    _id:string
+    username:string
+    email:string
+    places:any[]
+}
+
+export default mongoose.model<User>('User', UserSchema) ;
