@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 import User from '../models/user'
 
 
-export async function createUser(req:Request, res:Response){
+export async function createuser(req:Request, res:Response){
     const usr = new User({
         _id: new mongoose.Types.ObjectId(),
         username:req.body.username, 
@@ -27,7 +27,7 @@ export async function createUser(req:Request, res:Response){
     });
 }
 
-export async function getUserByEmail(req:Request, res:Response){
+export async function getuser(req:Request, res:Response){
 
     const gmail = req.query.email;
 
@@ -49,7 +49,7 @@ export async function getUserByEmail(req:Request, res:Response){
 
 }
 
-export async function addFavPlace(req:Request, res:Response){
+export async function addfavorite(req:Request, res:Response){
     try{
         const updatedUser = await User.updateOne( {email:req.query.email},{ $addToSet:{places:req.query.place} })
         return res.status(200).json({
@@ -66,7 +66,7 @@ export async function addFavPlace(req:Request, res:Response){
     }
 }
 
-export async function removeFavPlace(req:Request, res:Response){
+export async function removefavotite(req:Request, res:Response){
     try{
         const updatedUser = await User.updateOne( {email:req.query.email}, { $pull: { places:req.query.place as any} });
         return  res.status(200).json({
