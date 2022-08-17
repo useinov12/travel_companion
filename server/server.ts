@@ -3,7 +3,6 @@ import dotenv from 'dotenv'
 import cors, {CorsOptions} from 'cors'
 import path from 'path'
 import mongoose from 'mongoose'
-import ConnectDB from './config/connectDB'
 import mainRouter from './routes/main'
 
 
@@ -33,14 +32,9 @@ app.use(express.json());
 
 
 //connect to DB
-ConnectDB();
-
+import './config/connectDB';
 
 //routes
-app.get('/', (req, res)=>{
-    res.send('Hello server')
-})
-
 app.use('/api', mainRouter);
 
 

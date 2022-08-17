@@ -1,15 +1,13 @@
-import mongoose, {ConnectOptions} from 'mongoose';
+import mongoose, {ConnectOptions, CallbackError} from 'mongoose';
 
+const URI = process.env.MONGODB_URL 
 
-const ConnectDB = async () =>{
-    try{
-        await mongoose.connect(process.env.DATABASE_URI!, {
-            useUnifiedTopology:true,
-            useNewUrlParser:true
-        } as ConnectOptions)
-    } catch(err){
-        console.log(err)
-    }
-}
-
-export default ConnectDB;
+mongoose.connect(`${URI}`, {
+        useUnifiedTopology:true,
+        useNewUrlParser:true
+    } as ConnectOptions,
+    
+    (err:CallbackError) => {
+    if(err) throw err;
+    console.log('Mongodb connection')
+})
