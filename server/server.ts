@@ -1,6 +1,7 @@
 import express, {Request, Response} from 'express'
 import dotenv from 'dotenv'
 import cors, {CorsOptions} from 'cors'
+import path from 'path'
 import mongoose from 'mongoose'
 import connectDB from './config/connectDB'
 import mainRouter from './routes/main'
@@ -41,6 +42,16 @@ app.get('/', (req, res)=>{
 })
 
 app.use('/api', mainRouter);
+
+
+// Production Deploy
+if(process.env.NODE_ENV === 'production'){
+    app.use(express.static('client/build'))
+    app.get('*', (req, res) => {
+      res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'))
+    })
+  }
+  
 
 mongoose.connection.once('open', ()=>{
     console.log('Connected to MongoDB')

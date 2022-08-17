@@ -5,7 +5,10 @@
   "main": "server.js",
   "type": "module",
   "scripts": {
-    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm  server/server.ts"
+    "start": "node dist/server.js",
+    "dev": "node --experimental-specifier-resolution=node --loader ts-node/esm  server/server.ts",
+    "build": "tsc",
+    "heroku-postbuild": "tsc && cd client && npm i --only=dev && npm i && npm run build"
   },
   "author": "",
   "license": "ISC",
