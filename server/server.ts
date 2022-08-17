@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import cors, {CorsOptions} from 'cors'
 import path from 'path'
 import mongoose from 'mongoose'
-import mainRouter from './routes/main'
+import router from './routes/main'
 
 
 dotenv.config();
@@ -35,7 +35,7 @@ app.use(express.json());
 import './config/connectDB';
 
 //routes
-app.use('/api', mainRouter);
+app.use('/api', router);
 
 
 // Production Deploy
