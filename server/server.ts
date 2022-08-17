@@ -3,7 +3,7 @@ import dotenv from 'dotenv'
 import cors, {CorsOptions} from 'cors'
 import path from 'path'
 import mongoose from 'mongoose'
-import router from './routes/router'
+import routes from './routes'
 
 
 dotenv.config();
@@ -35,10 +35,10 @@ app.use(express.json());
 import './config/connectDB';
 
 //routes
-app.use('/api', router);
+app.use('/api', routes);
 
 
-// Production Deploy
+// Production Deploy static files
 if(process.env.NODE_ENV === 'production'){
     app.use(express.static('client/build'))
     app.get('*', (req, res) => {

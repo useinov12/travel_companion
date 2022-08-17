@@ -1,4 +1,5 @@
 import express from 'express';
+
 import { createuser, getuser, addfavorite, removefavotite } from '../controller/user';
 const router = express.Router();
 
