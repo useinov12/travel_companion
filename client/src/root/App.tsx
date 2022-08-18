@@ -1,6 +1,7 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 // import jwt_decode from 'jwt-decode';
+
 import { getPlacesData, getFavPlaceByCoords } from 'services/rapid-api';
 import Place from 'services/rapid-api/Place';
 import UserClass from 'services/rapid-api/User'
@@ -20,12 +21,14 @@ import useStyles from './styles'
 const initCoords :Coordinates = { lat:40.7831, lng:73.9712 };
 const initBounds:Bounds = { sw:{lat:0, lng:0}, ne:{lat:0, lng:0} };
 
-function App() {
+
+
+const App:React.FC = () => {
 
   const classes = useStyles();
+  const currentWidth = useMediaQuery('(min-width:600px',{ noSsr: true })
 
   const [isMobile, setIsMobile ] = useState<boolean>(false)
-  const currentWidth = useMediaQuery('(min-width:600px',{ noSsr: true })
 
   const [ mapMarkerFocus, setMapMarkerFocus ] = useState<number>(0)
   const [childClicked, setChildClicked] = useState<number>(-1);
@@ -35,7 +38,6 @@ function App() {
  
 
   const [ places, setPlaces ] = useState<Place[] | undefined>();
-  const [ filteredPlaces, setFilteredPlaces ] = useState<Place[]>();
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   
   const [type, setType ]  = useState<PlaceType>('restaurants');
@@ -81,8 +83,8 @@ function App() {
   },[isMobile])
 
   useEffect(()=>{
-    const filteredPlaces = places &&  places.filter( (place:Place) => place.rating > rating)!;
-    setFilteredPlaces(filteredPlaces!);
+    const filteredByRating = places && places.filter( (place:Place) => place.rating > rating)!;
+    setPlaces(filteredByRating!);
   }, [rating])
 
   useEffect( ()=>{
@@ -115,7 +117,7 @@ function App() {
             User={User}
             isLoading={isLoading}
             childClicked={childClicked}
-            places={filteredPlaces ? filteredPlaces : places!} 
+            places={places!} 
             type={type}
             setType={setType}
             rating={rating}
@@ -134,7 +136,7 @@ function App() {
             setCoordinates={setCoordinates} 
             setBounds={setBounds}
             coordinates={coordinates}
-            places={filteredPlaces ? filteredPlaces : places!}
+            places={places!}
             isMobile={isMobile}
           />
         </Grid>
