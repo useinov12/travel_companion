@@ -1,9 +1,9 @@
-import express from 'express'
-import dotenv from 'dotenv'
-import cors, {CorsOptions} from 'cors'
-import path from 'path'
-import mongoose from 'mongoose'
-import routes from './routes/main'
+import express from 'express';
+import dotenv from 'dotenv';
+import cors, {CorsOptions} from 'cors';
+import path from 'path';
+import mongoose from 'mongoose';
+import routes from './routes/main';
 
 
 dotenv.config();
@@ -32,7 +32,7 @@ app.use(express.json());
 
 
 //connect to DB
-import './config/connectDB';
+import './config/database';
 
 //routes
 app.use('/api', routes);
