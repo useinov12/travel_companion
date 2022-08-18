@@ -72,6 +72,7 @@
     "noFallthroughCasesInSwitch": true,
     "isolatedModules": false,
     "noImplicitAny": true,
+    "useUnknownInCatchVariables": false,
     "inlineSourceMap": true
   },
   "ts-node": {

@@ -3,7 +3,7 @@ import dotenv from 'dotenv';
 import cors, {CorsOptions} from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
-import routes from './routes';
+import routes from './routes/index';
 
 
 dotenv.config();
@@ -42,7 +42,7 @@ if(process.env.NODE_ENV === 'production'){
     app.get('*', (req, res) => {
       res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'))
     })
-  }
+}
   
 
 const PORT  = process.env.PORT || 5000;
