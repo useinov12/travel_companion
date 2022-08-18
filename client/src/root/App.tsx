@@ -38,7 +38,6 @@ const App:React.FC = () => {
  
 
   const [ places, setPlaces ] = useState<Place[] | undefined>();
-  const [ isLoading, setIsLoading ] = useState<boolean>(false);
   
   const [type, setType ]  = useState<PlaceType>('restaurants');
   const [rating, setRating ]  = useState<Rating>(0);
@@ -89,12 +88,10 @@ const App:React.FC = () => {
 
   useEffect( ()=>{
     if(bounds !== initBounds){
-      setIsLoading(true)
 
       getPlacesData(type, bounds.sw, bounds.ne)
       .then( data => {
         setPlaces(data)
-        setIsLoading(false)
       })
     }
   }, [bounds, type])
@@ -115,7 +112,6 @@ const App:React.FC = () => {
         <Grid className={isMobile ?  classes.modileListGridItem : classes.desktopListGridItem } item xs={12} md={5}>
           <List 
             User={User}
-            isLoading={isLoading}
             childClicked={childClicked}
             places={places!} 
             type={type}

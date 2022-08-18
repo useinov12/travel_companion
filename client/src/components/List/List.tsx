@@ -16,7 +16,6 @@ import FormsMenu from './sub-components/FormsMenu'
 interface ListProps{ 
     childClicked:number,
     places:Place[],
-    isLoading:boolean,
     type:PlaceType,
     setType:(type:PlaceType)=>void,
     rating:Rating,
@@ -32,7 +31,6 @@ const List :React.FC<ListProps> = ( {
     setMapMarkerFocus, 
     childClicked, 
     places, 
-    isLoading, 
     type, 
     setType, 
     rating, 
