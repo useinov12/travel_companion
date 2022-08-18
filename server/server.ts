@@ -45,7 +45,6 @@ if(process.env.NODE_ENV === 'production'){
   }
   
 
-
 const PORT  = process.env.PORT || 5000;
 mongoose.connection.once('open', ()=>{
     console.log('Connected to MongoDB')
