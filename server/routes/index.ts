@@ -1,4 +1,4 @@
-import user from './user'
+import user from './user.js'
 
 const routes = [
     user

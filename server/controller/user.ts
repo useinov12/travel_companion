@@ -1,6 +1,6 @@
 import { Request, Response } from 'express'
 import mongoose from 'mongoose';
-import User from '../models/user'
+import User from '../models/user.js'
 
 
 export async function createuser(req:Request, res:Response){

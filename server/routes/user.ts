@@ -1,6 +1,6 @@
 import express from 'express';
 
-import { createuser, getuser, addfavorite, removefavotite } from '../controller/user';
+import { createuser, getuser, addfavorite, removefavotite } from '../controller/user.js';
 const router = express.Router();
 
 
