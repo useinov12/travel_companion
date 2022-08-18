@@ -1,6 +1,6 @@
 import mongoose, {ConnectOptions, CallbackError} from 'mongoose';
 
-const URI = process.env.MONGODB_URL 
+const URI = process.env.DATABASE_URI 
 
 mongoose.connect(`${URI}`, {
         useUnifiedTopology:true,
