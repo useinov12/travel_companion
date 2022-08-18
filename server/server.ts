@@ -30,7 +30,7 @@ app.use(express.json());
 
 
 //connect to DB
-import './config/database';
+import './config/database.js';
 
 //routes
 app.use('/api', routes);
