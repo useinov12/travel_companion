@@ -46,15 +46,8 @@ const App:React.FC = () => {
   const [bounds, setBounds] = useState<Bounds>( initBounds );
 
 
-  useEffect(()=>{
-    setChildClicked(-1)
-  }, [mapMarkerFocus])
 
-  useEffect(()=>{
-    currentWidth ? setIsMobile(false) : setIsMobile(true)
-  }, [currentWidth])
-
-
+  /* HANDLERS */
   const handleSetUser = (user:any) =>{
     // setUser(new UserClass(user))
   }
@@ -65,6 +58,7 @@ const App:React.FC = () => {
     // btn.hidden= false
   }
 
+  /* USE EFFECTS */
   useEffect(()=>{ 
     //get user location
     navigator.geolocation.getCurrentPosition( ({ coords:{ latitude, longitude }} )=>{
@@ -76,6 +70,15 @@ const App:React.FC = () => {
   useEffect(()=>{
     // handleSignIn(handleSetUser);
   }, [])
+
+  useEffect(()=>{
+    setChildClicked(-1)
+  }, [mapMarkerFocus])
+
+  useEffect(()=>{
+    currentWidth ? setIsMobile(false) : setIsMobile(true)
+  }, [currentWidth])
+
 
   useEffect(()=>{
     // renderGoogleSignInBtn(isMobile)
@@ -97,44 +100,51 @@ const App:React.FC = () => {
   }, [bounds, type])
 
 
+  /* COMPONENT ARGS*/
+  const headerArgs = {
+    isMobile,
+    User,
+    setCoordinates,
+    handleSignOut
+  }
+
+  const listArgs = {
+    User,
+    childClicked,
+    places,
+    type,
+    setType,
+    rating,
+    setRating,
+    bounds,
+    isMobile,
+    setMapMarkerFocus
+  }
+
+  const mapArgs = {
+    mapMarkerFocus,
+    setMapMarkerFocus,
+    setChildClicked,
+    setCoordinates,
+    setBounds,
+    coordinates,
+    places,
+    isMobile
+  }
 
   return (
     <>
       <CssBaseline/>
-      <Header 
-        isMobile={isMobile}
-        User={User}
-        setCoordinates={setCoordinates}
-        handleSignOut={handleSignOut}
-      />
-      <Grid container className={isMobile ? classes.mobileGridContainer : classes.desktopGridContainer } spacing={3} style={{width:"100%"}}>
+      <Header  {...headerArgs}/>
+
+      <Grid container className={ isMobile ? classes.mobileGridContainer : classes.desktopGridContainer } spacing={3} style={{width:"100%"}}>
        
         <Grid className={isMobile ?  classes.modileListGridItem : classes.desktopListGridItem } item xs={12} md={5}>
-          <List 
-            User={User}
-            childClicked={childClicked}
-            places={places!} 
-            type={type}
-            setType={setType}
-            rating={rating}
-            setRating={setRating}
-            bounds={bounds}
-            isMobile={isMobile}
-            setMapMarkerFocus={setMapMarkerFocus}
-          />
+          <List {...listArgs} />
         </Grid>
 
         <Grid item className={isMobile ? classes.modileMapGridItem : classes.desktopMapGridItem}  xs={12} md={7}>
-          <Map 
-            mapMarkerFocus={mapMarkerFocus}
-            setMapMarkerFocus={setMapMarkerFocus}
-            setChildClicked={setChildClicked}
-            setCoordinates={setCoordinates} 
-            setBounds={setBounds}
-            coordinates={coordinates}
-            places={places!}
-            isMobile={isMobile}
-          />
+          <Map {...mapArgs} />
         </Grid>
 
       </Grid>

@@ -15,7 +15,7 @@ import FormsMenu from './sub-components/FormsMenu'
 
 interface ListProps{ 
     childClicked:number,
-    places:Place[],
+    places:Place[] |undefined,
     type:PlaceType,
     setType:(type:PlaceType)=>void,
     rating:Rating,

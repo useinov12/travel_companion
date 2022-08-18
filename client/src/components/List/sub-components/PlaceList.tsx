@@ -11,7 +11,7 @@ import useStyles from '../styles';
 
 interface PlaceListProps{ 
     isMobile:boolean
-    places:Place[],
+    places:Place[] |undefined,
     listItemRef:any,
     childClicked:number,
     User:User,
@@ -22,7 +22,7 @@ const PlaceList :React.FC<PlaceListProps> = ({isMobile, places, listItemRef, chi
     const classes = useStyles();
     return (
         <Stack spacing={3} direction={isMobile ? "row" : "column" } className={isMobile ? classes.listMobile :  classes.listDesktop }>
-            { places.map((place:any, idx:number)=> 
+            { places && places.map((place:any, idx:number)=> 
                 <Grid item ref={listItemRef[idx]}  key={idx} xs={12} onTouchMove={()=>setMapMarkerFocus(idx)} onMouseEnter={()=>setMapMarkerFocus(idx)}> 
                     <PlaceDetails 
                         place={place} 
