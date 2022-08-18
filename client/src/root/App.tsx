@@ -5,12 +5,12 @@ import { getPlacesData, getFavPlaceByCoords } from 'services/rapid-api';
 import Place from 'services/rapid-api/Place';
 import UserClass from 'services/rapid-api/User'
 
-import {handleSignIn, renderGoogleSignInBtn } from 'services/googleAuth'
+// import {handleSignIn, renderGoogleSignInBtn } from 'services/googleAuth'
 
 import { CssBaseline, Grid, useMediaQuery } from '@material-ui/core';
 
 import  { Header} from 'components/Header';
-import   { List }   from 'components/List';
+import  { List }   from 'components/List';
 import  { Map }  from 'components/Map';
 
 import {Coordinates, Bounds, PlaceType, Rating} from 'sharedTypes/types';
@@ -34,8 +34,8 @@ function App() {
   const [User, setUser ] = useState<UserClass>(noUser);
  
 
-  const [ places, setPlaces ] = useState<Place[]>();
-  const [ filteredPlaces, setFilteredPlaces ] = useState<Place[]>([]);
+  const [ places, setPlaces ] = useState<Place[] | undefined>();
+  const [ filteredPlaces, setFilteredPlaces ] = useState<Place[]>();
   const [ isLoading, setIsLoading ] = useState<boolean>(false);
   
   const [type, setType ]  = useState<PlaceType>('restaurants');
@@ -55,31 +55,29 @@ function App() {
 
 
   const handleSetUser = (user:any) =>{
-    console.log('SETTIN USER USING HANDLER')
-    setUser(new UserClass(user))
+    // setUser(new UserClass(user))
   }
 
   const handleSignOut = () =>{
-    setUser(noUser)
-    const btn = document.getElementById("googleSignInBtn")!
-    btn.hidden= false
+    // setUser(noUser)
+    // const btn = document.getElementById("googleSignInBtn")!
+    // btn.hidden= false
   }
 
   useEffect(()=>{ 
     //get user location
     navigator.geolocation.getCurrentPosition( ({ coords:{ latitude, longitude }} )=>{
-      console.log({ latitude, longitude })
+      // console.log({ latitude, longitude })
       setCoordinates( {lat:latitude, lng:longitude} )
     })
   }, [])
 
-
   useEffect(()=>{
-    handleSignIn(handleSetUser);
+    // handleSignIn(handleSetUser);
   }, [])
 
   useEffect(()=>{
-    renderGoogleSignInBtn(isMobile)
+    // renderGoogleSignInBtn(isMobile)
   },[isMobile])
 
   useEffect(()=>{
@@ -87,14 +85,13 @@ function App() {
     setFilteredPlaces(filteredPlaces!);
   }, [rating])
 
-  useEffect(()=>{
+  useEffect( ()=>{
     if(bounds !== initBounds){
       setIsLoading(true)
 
       getPlacesData(type, bounds.sw, bounds.ne)
       .then( data => {
-        setPlaces(data && data.filter((place:any)=> place.name && place.num_reviews > 0))
-        // console.log(data)
+        setPlaces(data)
         setIsLoading(false)
       })
     }

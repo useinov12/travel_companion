@@ -24,6 +24,7 @@ const corsOptions:CorsOptions = {
 }
 
 app.use(cors(corsOptions));
+
 //body parsers
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());

@@ -17,12 +17,9 @@ export const getPlacesData  = async (type:string, sw:any, ne:any) =>{ //type ts
       }
     });
 
-
-    let rawList= data;
-    console.log(rawList[0])
-    let formatedList:Place[] = [];
-    rawList.map( (place:any)=>  formatedList.push( new Place(place)) )
-    return formatedList;
+    const filterOutEmptyLocations = data.filter( (place:any)=> place.name && Number(place.num_reviews) > 0);
+    const formatList = filterOutEmptyLocations.map( (place:any)=> new Place(place) );
+    return formatList;
   }
   catch(error){
     console.log('Fetch Error', error)
@@ -30,25 +27,26 @@ export const getPlacesData  = async (type:string, sw:any, ne:any) =>{ //type ts
 }
 
 export const getFavPlaceByCoords = async (type:string, lat:any, lng:any, name:string) =>{//type ts
-  try{
-    const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-by-latlng`, {
-      params: {
-        latitude:lat,
-        longitude:lng
-      },
-      headers: {
-        'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY!,
-        'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
-      }
-    })
+  return
+  // try{
+  //   const { data: { data } } = await axios.get(`https://travel-advisor.p.rapidapi.com/${type}/list-by-latlng`, {
+  //     params: {
+  //       latitude:lat,
+  //       longitude:lng
+  //     },
+  //     headers: {
+  //       'X-RapidAPI-Key': process.env.REACT_APP_RAPID_API_KEY!,
+  //       'X-RapidAPI-Host': 'travel-advisor.p.rapidapi.com'
+  //     }
+  //   })
 
-    const rawData = data;
-    console.log(rawData)
-    const getFiltered = rawData.filter( (place:Place) => place.name === name)
-    console.log(getFiltered[0])
+  //   const rawData = data;
+  //   console.log(rawData)
+  //   const getFiltered = rawData.filter( (place:Place) => place.name === name)
+  //   console.log(getFiltered[0])
 
-    return rawData
-  } catch(error){
-    console.log('FRTCH ERROR', error)
-  }
+  //   return rawData
+  // } catch(error){
+  //   console.log('FRTCH ERROR', error)
+  // }
 }
