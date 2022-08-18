@@ -1,7 +1,6 @@
 import user from './user'
 
-const routes = [
+export const routes = [
     user
 ]
 
-export default routes;

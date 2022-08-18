@@ -3,13 +3,11 @@ import dotenv from 'dotenv';
 import cors, {CorsOptions} from 'cors';
 import path from 'path';
 import mongoose from 'mongoose';
-import routes from './routes/main';
+import {routes} from './routes';
 
 
 dotenv.config();
 const app = express();
-
-const PORT  = process.env.PORT;
 
 // Cross Origin Resource Sharing
 const whitelist = ['http://127.0.0.1:5500', 'http://localhost:3000'];
@@ -47,6 +45,8 @@ if(process.env.NODE_ENV === 'production'){
   }
   
 
+
+const PORT  = process.env.PORT || 5000;
 mongoose.connection.once('open', ()=>{
     console.log('Connected to MongoDB')
     app.listen( PORT, ()=> console.log(`Server on port ${PORT}`));
