@@ -57,7 +57,7 @@ export async function addfavorite(req:Request, res:Response){
             message: `Place added!`,
             User: updatedUser,
         });
-    } catch(error){
+    } catch(error:any){
         res.status(500).json({
             success: false,
             message: 'Could not add place',
@@ -74,7 +74,7 @@ export async function removefavotite(req:Request, res:Response){
             message: `Place deleted!`,
             User: updatedUser,
         });
-    } catch(error){
+    } catch(error:any){
         res.status(500).json({
             success: false,
             message: 'Could not add place',
