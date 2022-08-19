@@ -1,12 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import axios from 'axios'
 // import jwt_decode from 'jwt-decode';
+// import {handleSignIn, renderGoogleSignInBtn } from 'services/googleAuth'
 
 import { getPlacesData, getFavPlaceByCoords } from 'services/rapid-api';
 import Place from 'services/rapid-api/Place';
 import UserClass from 'services/rapid-api/User'
 
-// import {handleSignIn, renderGoogleSignInBtn } from 'services/googleAuth'
 
 import { CssBaseline, Grid, useMediaQuery } from '@material-ui/core';
 
@@ -14,7 +14,7 @@ import  { Header} from 'components/Header';
 import  { List }   from 'components/List';
 import  { Map }  from 'components/Map';
 
-import {Coordinates, Bounds, PlaceType, Rating} from 'sharedTypes/types';
+import { Coordinates, Bounds, PlaceType, Rating } from 'sharedTypes/types';
 
 import useStyles from './styles'
 
@@ -91,7 +91,6 @@ const App:React.FC = () => {
 
   useEffect( ()=>{
     if(bounds !== initBounds){
-
       getPlacesData(type, bounds.sw, bounds.ne)
       .then( data => {
         setPlaces(data)

@@ -85,7 +85,6 @@ const List :React.FC<ListProps> = ( {
         setMapMarkerFocus,
         User,
     }
-    console.log(places)
 
     return (
         <div className={classes.container}>

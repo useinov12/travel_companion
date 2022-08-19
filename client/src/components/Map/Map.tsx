@@ -2,7 +2,6 @@ import React, { Dispatch } from 'react'
 
 import GoogleMapReact from 'google-map-react';
 
-// import {useMediaQuery } from '@material-ui/core'
 import Tooltip from '@material-ui/core/Tooltip';
 
 import useStyles from './styles'
@@ -17,7 +16,7 @@ interface MapProps{
     setCoordinates:Dispatch<Coordinates>,
     setBounds:Dispatch<Bounds>, 
     coordinates : Coordinates,
-    places:Place[], 
+    places:Place[] | undefined, 
     isMobile:boolean,
     mapMarkerFocus:number
 }
@@ -41,7 +40,6 @@ const Map :React.FC<MapProps> = ( {
 }) => {
 
     const classes = useStyles();
-    // const isDesktop = useMediaQuery('(min-width:600px');
 
 
     const Marker:React.FC<MapMarkerProps> = ({children}) =>{

@@ -2,8 +2,8 @@ import React, {useEffect, useState} from 'react';
 import User from 'services/rapid-api/User'
 import Place from 'services/rapid-api/Place'
 
-import CardDesktop from './sub-components/CardDesktop'
-import CardMobile from './sub-components/CardMobile'
+import CardDesktop from './sub-components/CardDesktop';
+import CardMobile from './sub-components/CardMobile';
 
 type PlaceDetailsProps={
     place:Place,
@@ -13,7 +13,13 @@ type PlaceDetailsProps={
     User:User
 }
 
-const PlaceDetails : React.FC<PlaceDetailsProps> = ( { User, place, selected, refProp, isMobile } ) => {
+const PlaceDetails : React.FC<PlaceDetailsProps> = ( { 
+    User, 
+    place, 
+    selected, 
+    refProp, 
+    isMobile 
+} ) => {
 
     if(selected) refProp.current.scrollIntoView( {behavior:'smooth', block:"start"});
     const [ isInFavorites, setIsInFavorites] = useState<boolean>(false);
