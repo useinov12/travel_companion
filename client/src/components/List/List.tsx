@@ -93,7 +93,7 @@ const List :React.FC<ListProps> = ( {
             {/* LOGIN FUNC */}
             {/* <FavoritesList {...favoritesListProps} /> */}
 
-            { places ? <PlaceList {...placesProps} /> : <SkeletonList isMobile={isMobile}/> }
+            { isLoading ? <SkeletonList isMobile={isMobile}/> : <PlaceList {...placesProps} />  }
             
         </div>
     )

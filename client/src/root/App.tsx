@@ -89,6 +89,7 @@ const App:React.FC = () => {
     setPlaces(filteredByRating!);
   }, [rating])
 
+
   useEffect( ()=>{
     if(bounds !== initBounds){
       getPlacesData(type, bounds.sw, bounds.ne)
